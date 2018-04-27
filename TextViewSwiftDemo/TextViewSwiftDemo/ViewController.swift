@@ -18,6 +18,8 @@ class ViewController: UIViewController {
         
         textView.placeholder = "999"
          textView.placeholderColor = UIColor.red
+        textView.font = UIFont.systemFont(ofSize: 18);
+        textView.text = "------------";
         self.view.addSubview(textView)
     }
 

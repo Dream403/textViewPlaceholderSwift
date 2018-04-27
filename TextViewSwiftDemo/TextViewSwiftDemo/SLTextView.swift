@@ -15,39 +15,22 @@ class SLTextView: UITextView {
     
    @IBInspectable public var placeholderColor:UIColor? = UIColor.black
     
-   @IBInspectable public var  placeholderFont:UIFont?
+    @IBInspectable public var  placeholderFont:UIFont? = UIFont.systemFont(ofSize: 14);
     
     override  var text: String! {
-    
-        get{
-            return  super.text
-        }
-        
-        set{
-        
-            super.text = newValue
-            self.setNeedsDisplay()
+        didSet{
+          self.setNeedsDisplay()
         }
     }
-    
-    override var font: UIFont?{
-        
-        get {
-            
-            return  super.font
-        }
-        set{
-            super.font = newValue
-            
+    override var font: UIFont? {
+        didSet{
             self.setNeedsDisplay()
         }
-        
     }
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         
       super.init(frame: frame, textContainer: textContainer)
-    
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .UITextViewTextDidChange, object: self)
         
         
