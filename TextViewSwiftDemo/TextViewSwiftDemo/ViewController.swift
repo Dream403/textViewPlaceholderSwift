@@ -13,14 +13,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let  textView = SLTextView(frame: CGRect.init(x: 100, y: 100, width: 121, height: 100) )
-        
-        textView.placeholder = "999"
-         textView.placeholderColor = UIColor.red
-        textView.font = UIFont.systemFont(ofSize: 18);
-        textView.text = "------------";
-        self.view.addSubview(textView)
+//        
+//        let  textView = SLTextView(frame: CGRect.init(x: 100, y: 100, width: 121, height: 100) )
+//        
+//        textView.placeholder = "999"
+//         textView.placeholderColor = UIColor.red
+//        textView.font = UIFont.systemFont(ofSize: 18);
+//        textView.text = "------------";
+//        self.view.addSubview(textView)
     }
 
     override func didReceiveMemoryWarning() {

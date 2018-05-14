@@ -8,14 +8,20 @@
 
 import UIKit
 
-class SLTextView: UITextView {
+ @IBDesignable class SLTextView: UITextView {
 
-    
    @IBInspectable   public var placeholder:NSString?
     
-   @IBInspectable public var placeholderColor:UIColor? = UIColor.black
+    @IBInspectable public var placeholderColor:UIColor? = UIColor.black
     
     @IBInspectable public var  placeholderFont:UIFont? = UIFont.systemFont(ofSize: 14);
+    
+    @IBInspectable public var cornerRadius:CGFloat = 0{
+        didSet{
+            self.layer.cornerRadius = cornerRadius;
+            self.layer.masksToBounds = true;
+        }
+    };
     
     override  var text: String! {
         didSet{
@@ -27,14 +33,11 @@ class SLTextView: UITextView {
             self.setNeedsDisplay()
         }
     }
-    
     override init(frame: CGRect, textContainer: NSTextContainer?) {
-        
       super.init(frame: frame, textContainer: textContainer)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .UITextViewTextDidChange, object: self)
-        
-        
+        self.addNotificationCenter();
     }
+    
     @objc func textDidChange(){
       self.delegate?.textViewDidChange!(self)
        self.setNeedsDisplay()
@@ -67,7 +70,8 @@ class SLTextView: UITextView {
     
     }
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder);
+        self.addNotificationCenter();
     }
 
     deinit {
@@ -75,4 +79,10 @@ class SLTextView: UITextView {
     }
     
 }
+ fileprivate extension SLTextView{
+    func addNotificationCenter() {
+         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .UITextViewTextDidChange, object: self)
+    }
+    
+ }
 
